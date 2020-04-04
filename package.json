@@ -1,14 +1,14 @@
 {
   "name": "react-hook-search",
   "version": "1.0.0",
-  "description": "A react hook which allows easy implementation of search",
+  "description": "A react hook which allows easy implementation of search functionality",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "xd"
+    "url": "https://github.com/lukasgjetting/react-hook-search.git"
   },
   "keywords": [
     "react",
