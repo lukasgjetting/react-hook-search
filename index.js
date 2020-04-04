@@ -1,6 +1,7 @@
 import {
   useState,
   useMemo,
+  useCallback,
 } from 'react';
 
 // Concatenate the values of the item attributes
@@ -19,6 +20,16 @@ const itemStringMatches = (itemString, searchValue) => searchValue.toLowerCase()
 // based on the searchValue (value and setter returned)
 const useSearch = (items, attributes) => {
   const [searchValue, setSearchValue] = useState('');
+
+  const onSearchChange = useCallback((event) => {
+  	// Might be an actual onChange event
+  	// Or it might just be set directly
+  	if (event && event.target && event.target.value) {
+  		setSearchValue(event.target.value);
+  	} else {
+  		setSearchValue(event);
+  	}
+  }, []);
 
   // attributes will change on every render if they're just passed like ['attr1', 'attr2', ...]
   // So we use the JSON result as a dependency, as it will
