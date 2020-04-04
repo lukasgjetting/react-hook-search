@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"default_line_ending": "unix",
+		"tab_size": 4
+	}
+}
