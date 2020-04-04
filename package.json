@@ -1,6 +1,6 @@
 {
   "name": "react-hook-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A react hook which allows easy implementation of search functionality",
   "main": "index.js",
   "scripts": {
