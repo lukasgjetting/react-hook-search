@@ -54,3 +54,7 @@ const App = () => {
   );
 };
 ```
+
+## Contributing
+
+Issues and PRs are more than welcome. Thanks!
