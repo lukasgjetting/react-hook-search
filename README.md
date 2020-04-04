@@ -26,14 +26,15 @@ In return, you get an array containing the filtered dataset, the current search 
 import useSearch from 'react-hook-search';
 
 const items = [
-  { name: 'John Doe', address: '4251 Carolyns Circle' },
-  { name: 'Jane Doe', address: '10 Downing Street' },
-  { name: 'Mike', address: 'Somewhere, I tell ya!' },
+  { id: 1, name: 'John Doe', address: '4251 Carolyns Circle' },
+  { id: 2, name: 'Jane Doe', address: '10 Downing Street' },
+  { id: 3, name: 'Mike', address: 'Somewhere, I tell ya!' },
 ];
 
 const attributes = ['name', 'address'];
 
 const App = () => {
+  // The search function will search through 'name' and 'address', but not 'id'
   const [filteredItems, search, setSearch] = useSearch(items, attributes);
 
   return (
@@ -44,7 +45,7 @@ const App = () => {
       />
       <div>
         {filteredItems.map((item) => (
-          <div key={item.name}>
+          <div key={item.id}>
             {item.name} - {item.address}
           </div>
         ))}
