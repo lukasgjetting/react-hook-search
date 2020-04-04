@@ -6,7 +6,7 @@ import {
 
 // Concatenate the values of the item attributes
 const getItemString = (item, attributes) => attributes.reduce(
-  (str, a) => `${str} ${item[a].toString().toLowerCase()}`,
+  (str, a) => `${str} ${(item[a] || '').toString().toLowerCase()}`,
   '',
 );
 
