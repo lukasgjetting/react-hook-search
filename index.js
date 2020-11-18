@@ -15,10 +15,10 @@ const itemStringMatches = (itemString, searchValue) => searchValue.toLowerCase()
   (word) => itemString.includes(word),
 );
 
-// Takes an array of objects and an array of strings
+// Takes an array of objects and EITHER an array of strings (attributes) OR a predicate 
 // The specified attributes of the objects will be filtered
 // based on the searchValue (value and setter returned)
-const useSearch = (items, attributes) => {
+const useSearch = (items, attributesOrPredicate) => {
   const [searchValue, setSearchValue] = useState('');
 
   const onSearchChange = useCallback((event) => {
@@ -30,6 +30,23 @@ const useSearch = (items, attributes) => {
   		setSearchValue(event);
   	}
   }, []);
+
+  let attributes;
+  let predicate;
+
+  switch (typeof attributesOrPredicate) {
+    case 'array':
+      attributes = attributesOrPredicate;
+      break;
+
+    case 'function':
+      attributes = [];
+      predicate = attributesOrPredicate;
+      break;
+
+    default:
+      throw new Error('The second argument passed to useSearch must be either an array of attributes or a predicate.');
+  }
 
   // attributes will change on every render if they're just passed like ['attr1', 'attr2', ...]
   // So we use the JSON result as a dependency, as it will
@@ -43,12 +60,21 @@ const useSearch = (items, attributes) => {
     [items, attributeJson],
   );
 
-  const filteredItems = useMemo(() => (searchValue === '' ?
-    items :
-    items.filter((item, index) => itemStringMatches(itemStrings[index], searchValue))
-  ), [searchValue, items, itemStrings]);
+  const filteredItems = useMemo(() => {
+    if (searchValue === '') {
+      return items;
+    }
 
-  return [filteredItems, searchValue, setSearchValue];
+    if (predicate != null) {
+      return items.filter(predicate);
+    }
+
+    return items.filter((item, index) => (
+      itemStringMatches(itemStrings[index], searchValue)
+    ));
+  }, [searchValue, items, itemStrings, predicate]);
+
+  return [filteredItems, searchValue, onSearchChange];
 };
 
 export default useSearch;
