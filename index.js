@@ -66,7 +66,7 @@ const useSearch = (items, attributesOrPredicate) => {
     }
 
     if (predicate != null) {
-      return items.filter(predicate);
+      return items.filter((item, index) => predicate(searchValue, item, index));
     }
 
     return items.filter((item, index) => (
