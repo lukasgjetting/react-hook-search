@@ -16,7 +16,7 @@ npm install --save react-hook-search
 
 ## Usage
 
-Pass an array of objects (the dataset) and an array of strings (attributes to search through in the dataset).
+Pass an array of objects (the dataset) and either an array of strings (attributes to search through in the dataset) or a predicate.
 
 In return, you get an array containing the filtered dataset, the current search value and an onChange handler.
 
@@ -36,6 +36,11 @@ const attributes = ['name', 'address'];
 const App = () => {
   // The search function will search through 'name' and 'address', but not 'id'
   const [filteredItems, search, setSearch] = useSearch(items, attributes);
+
+  // OR
+
+  // The predicate will only return items that match the name (case sensitive)
+  const [filteredItems, search, setSearch] = useSearch(items, (searchValue, item) => item.name.includes(searchValue));
 
   return (
     <>
