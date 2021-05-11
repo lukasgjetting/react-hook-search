@@ -23,5 +23,9 @@
     "use"
   ],
   "author": "Lukas Gjetting",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "react": "^17.0.2",
+    "typescript": "^4.2.4"
+  }
 }

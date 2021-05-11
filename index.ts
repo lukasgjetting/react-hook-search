@@ -15,37 +15,35 @@ const itemStringMatches = (itemString, searchValue) => searchValue.toLowerCase()
   (word) => itemString.includes(word),
 );
 
+type searchChange = (eventOrValue: string | React.FormEvent<HTMLInputElement>) => void;
+type searchHook = <T>(items: T[], attributesOrPredicate: string[]) => [T[], string, searchChange];
+
 // Takes an array of objects and EITHER an array of strings (attributes) OR a predicate 
 // The specified attributes of the objects will be filtered
 // based on the searchValue (value and setter returned)
-const useSearch = (items, attributesOrPredicate) => {
+const useSearch: searchHook  = (items, attributesOrPredicate) => {
   const [searchValue, setSearchValue] = useState('');
 
-  const onSearchChange = useCallback((event) => {
+  const onSearchChange: searchChange = useCallback((eventOrValue) => {
   	// Might be an actual onChange event
   	// Or it might just be set directly
-  	if (event && event.target && event.target.value) {
-  		setSearchValue(event.target.value);
-  	} else {
-  		setSearchValue(event);
-  	}
+  	if (typeof eventOrValue === 'string') {
+      setSearchValue(eventOrValue);
+    } else {
+      setSearchValue(eventOrValue.target.value);
+    }
   }, []);
 
   let attributes;
   let predicate;
 
-  switch (typeof attributesOrPredicate) {
-    case 'array':
-      attributes = attributesOrPredicate;
-      break;
-
-    case 'function':
-      attributes = [];
-      predicate = attributesOrPredicate;
-      break;
-
-    default:
-      throw new Error('The second argument passed to useSearch must be either an array of attributes or a predicate.');
+  if (Array.isArray(attributesOrPredicate)) {
+    attributes = [];
+    predicate = attributesOrPredicate;
+  } else if (typeof attributesOrPredicate === 'string') {
+    attributes = attributesOrPredicate;
+  } else {
+    throw new Error('The second argument passed to useSearch must be either an array of attributes or a predicate.');
   }
 
   // attributes will change on every render if they're just passed like ['attr1', 'attr2', ...]

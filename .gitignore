@@ -1,2 +1,5 @@
 # Sublime Text
 *.sublime-workspace
+
+# General
+node_modules
