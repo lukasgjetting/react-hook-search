@@ -1,11 +1,13 @@
 {
   "name": "react-hook-search",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "A react hook which allows easy implementation of search functionality",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "yarn publish"
+    "build": "tsc",
+    "prepublish": "tsc"
   },
   "peerDependencies": {
     "react": "^16.8.0"
