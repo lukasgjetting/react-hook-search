@@ -4,20 +4,19 @@ import {
   useCallback,
 } from 'react';
 import {
-  Item,
   UseSearchHook,
   OnSearchChange,
 } from './types';
 
 // Concatenate the values of the item attributes
-const getItemString = <T extends Item>(
+const getItemString = <T>(
   item: T,
   attributes: (keyof T & string)[],
 ) : string => attributes.reduce(
     (str, a) => {
-      const value = item[a];
+      const value: { toString?: () => string } = item[a];
 
-      if (value == null) {
+      if (value == null || typeof value.toString !== 'function') {
         return str;
       }
 

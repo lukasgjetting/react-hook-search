@@ -1,6 +1,11 @@
 {
+    "plugins": ["jest"],
     "extends": ["airbnb-typescript"],
     "parserOptions": {
         "project": "./tsconfig.json"
-    }
+    },
+    "env": {
+        "jest/globals": true
+    },
+    "ignorePatterns": ["jest.config.js"]
 }
