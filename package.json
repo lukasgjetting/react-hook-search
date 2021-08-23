@@ -4,6 +4,7 @@
   "description": "A react hook which allows easy implementation of search functionality",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["src", "dist"],
   "scripts": {
     "test": "jest",
     "build": "tsc",
