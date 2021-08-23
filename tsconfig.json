@@ -1,5 +1,9 @@
 {
     "extends": "@tsconfig/recommended/tsconfig.json",
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.test.ts"]
+    "exclude": ["node_modules", "**/*.test.ts"],
+    "compilerOptions": {
+        "outDir": "dist",
+        "declaration": true
+    }
 }
