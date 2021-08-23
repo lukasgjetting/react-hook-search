@@ -1,10 +1,13 @@
 {
   "name": "react-hook-search",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A react hook which allows easy implementation of search functionality",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["src", "dist"],
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "build": "tsc",
