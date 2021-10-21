@@ -20,7 +20,7 @@ const getItemString = <T>(
         return str;
       }
 
-      return `${str} ${value.toString()}`;
+      return `${str} ${value.toString().toLowerCase()}`;
     },
     '',
   );

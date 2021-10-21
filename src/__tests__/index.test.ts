@@ -53,6 +53,20 @@ describe('useSearch', () => {
     expect(filteredUsers.length).toBe(0);
   });
 
+  it('Is not case sensitive when filtering by property list', () => {
+    const { result } = renderHook(() => useSearch(users, ['name']));
+
+    act(() => {
+      const onSearchChange = result.current[2];
+
+      onSearchChange('gjEtTIng');
+    });
+
+    const [filteredUsers] = result.current;
+
+    expect(filteredUsers.length).toBe(1);
+  });
+
   it('Correctly filters by a predicate', () => {
     // Always includes first item
     // Also includes exact matches for name
