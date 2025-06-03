@@ -1,3 +1,5 @@
+> **Looking for an office space?** I recently launched [Nordesk](https://nordesk-kontor.dk) to help freelancers and small businesses find their next place to work from. Completely free!
+
 # React Hook Search
 
 A react hook which allows easy implementation of search functionality
